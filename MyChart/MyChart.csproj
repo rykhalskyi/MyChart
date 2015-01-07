@@ -64,6 +64,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BarChartVIewModel.cs" />
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="ChartObserver.cs" />
     <Compile Include="MyBarChart.xaml.cs">
       <DependentUpon>MyBarChart.xaml</DependentUpon>

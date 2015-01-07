@@ -12,6 +12,12 @@ namespace MyChart
         //private DataGeneratorStub _dataProvider = new DataGeneratorStub(250, 125);
         private IncrementDataGenerationStub _dataProvider = new IncrementDataGenerationStub(250, 150);
 
+        private BarChartVIewModel _bars = new BarChartVIewModel();
+        public BarChartVIewModel Bars 
+        {
+            get {return _bars;}
+        }
+
         private TChartViewModel _chart = new TChartViewModel(50);
         public TChartViewModel Chart
         {
@@ -33,8 +39,12 @@ namespace MyChart
 
             _dataProvider2.GetNewData += Chart2.RecieveAndShift;
             _dataProvider2.Start();
-        }
 
+            _bars.AddBar(50);
+            _bars.AddBar(25);
+            _bars.AddBar(75);
+        }
+        
         public void Start()
         {
             _dataProvider.Start();

@@ -6,7 +6,6 @@
              xmlns:local ="clr-namespace:MyChart"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
     <Border BorderBrush="White"
                 Grid.Column="0"
                 Grid.Row="0"
@@ -19,7 +18,10 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid Margin="5,10"
-              Grid.Column="0" >
+                  Grid.Column="0" 
+                  local:ChartObserver.Observe="true"
+                  local:ChartObserver.ObservedHeight="{Binding Height,Mode=OneWayToSource}"
+                  local:ChartObserver.ObservedWidth="{Binding Width,Mode=OneWayToSource}">
 
                 <Path Stroke="DarkGray"
                       Stretch="Fill"
@@ -65,26 +67,50 @@
                             M 200,0 L 200,20
                             M 250,0 L250,20 Z
                       "/>
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center"
-                            >
-                    <Path Stroke="Transparent"
-                          Name="BarHeader"
-                          Fill="Crimson"
-                          HorizontalAlignment="Center"
-                          
-                          Data="M 10,0 L90,0
-                                C 100,0 100,0 100,10
-                                L 0,10 
-                                C 0,0 0,0 10,0
-                          "/>
-                    <Grid HorizontalAlignment="Center"
-                          Height="200"
-                          Width="{Binding ElementName=BarHeader, Path=ActualWidth}"
-                          Background="Crimson"/>
-                        
-                </StackPanel>
+
+                <ItemsControl ItemsSource="{Binding Bars}"
+                              VerticalAlignment="Bottom"
+                              Grid.Column="0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left"
+                                        Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MyBarChart}},
+                                                         Path=DataContext.BarMargin}"
+                                        SnapsToDevicePixels="True"
+                                        >
+                                <Grid Height="10"
+                                      Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                      Path=DataContext.BarWidth}">
+                                   
+                                <Path Name="BarHeader"
+                                      Fill="Crimson"
+                                      StrokeThickness="0"
+                                      VerticalAlignment="Bottom"
+                                      HorizontalAlignment="Center"
+                                      Stretch="Fill"
+                                      Data="M 10,0 L90,0
+                                            C 100,0 100,0 100,10
+                                            L 0,10 
+                                            C 0,0 0,0 10,0 "/>
+                                </Grid>
+                                <Grid HorizontalAlignment="Center"
+                                      Height="{Binding}"
+                                      Width="{Binding ElementName=BarHeader, Path=ActualWidth}"
+                                      Background="Crimson"/>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
             </Grid>
             
         </Grid>

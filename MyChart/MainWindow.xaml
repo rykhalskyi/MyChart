@@ -25,7 +25,8 @@
                              LegendForeground="#30588D"/>
         
         <local:MyBarChart Grid.Column="1"
-                          Grid.Row="0"/>
+                          Grid.Row="0"
+                          DataContext="{Binding Bars}"/>
 
         <local:MyLinearChart x:Name="charchart2"
                              Grid.Column="2"
