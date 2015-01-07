@@ -23,70 +23,9 @@
                              AxesPrimaryStroke="#30588D"
                              AxesSecondaryStroke="#253F51"
                              LegendForeground="#30588D"/>
-        <Border BorderBrush="White"
-                Grid.Column="1"
-                Grid.Row="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                BorderThickness="1">
-            <Grid Margin="5,10">
-               
-                <Path Stroke="#253F5C"
-                      Stretch="Fill"
-                      Grid.Column="0"
-                      Data="M 0,0 L 250,0
-                            M 0,2 L 250,2
-                            M 0,6 L 250,6
-                            M 0,8 L 250,8
-                            M 0,10 L 250,10
-                            M 0,14 L 250,14
-                            M 0,18 L 250,18
-                            M 0,20 L 250,20"/>
-                <Path Stroke="#30588D"
-                      Stretch="Fill"
-                      Grid.Column="0"
-                      Data="M 0,0 L 250,0
-                            M 0,4 L 250,4
-                            M 0,8 L 250,8
-                            M 0,12 L 250,12
-                            M 0,16 L 250,16
-                            M 0,20 L 250,20
-                            M 0,0 L 0,20
-                            M 250,0 L250,20
-                      "/>
-                <Path Stroke="#253F5C"
-                      Stretch="Fill"
-                      Grid.Column="0"
-                      Data="M 0,0 L 0,20
-                            M 25,0 L 25,20
-                            M 75,0 L 75,20 
-                            M 125,0 L 125,20
-                            M 175,0 L 175,20
-                            M 225,0 L 225,20
-                            M 250,0 L250,20
-                      "/>
-                <Path Stroke="#30588D"
-                      Stretch="Fill"
-                      Grid.Column="0"
-                      Data="M 0,0 L 0,20
-                            M 50,0 L 50,20
-                            M 100,0 L 100,20 
-                            M 150,0 L 150,20
-                            M 200,0 L 200,20
-                            M 250,0 L250,20
-                      "/>
-                <Polyline Points="{Binding Chart.Points, Converter={StaticResource DataPointConverter}}"
-                      Stroke="#CC3D6EB3"
-                      Stretch="Fill"
-                      Fill="#CC3D6EB3"
-                      StrokeThickness="1"
-                      Grid.Column="0"
-                   >
-                   
-                </Polyline>
-               
-            </Grid>
-        </Border>
+        
+        <local:MyBarChart Grid.Column="1"
+                          Grid.Row="0"/>
 
         <local:MyLinearChart x:Name="charchart2"
                              Grid.Column="2"
