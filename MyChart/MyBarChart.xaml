@@ -17,8 +17,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Grid Margin="5,10"
                   Grid.Column="0" 
+                  Grid.Row="0"
                   local:ChartObserver.Observe="true"
                   local:ChartObserver.ObservedHeight="{Binding Height,Mode=OneWayToSource}"
                   local:ChartObserver.ObservedWidth="{Binding Width,Mode=OneWayToSource}">
@@ -33,7 +38,7 @@
                             M 0,10 L 250,10
                             M 0,14 L 250,14
                             M 0,18 L 250,18
-                            M 0,20 L 250,20 Z"/>
+                            M 0,20 L 250,20 "/>
                 <Path Stroke="Gray"
                       Stretch="Fill"
                       Grid.Column="0"
@@ -44,7 +49,7 @@
                             M 0,16 L 250,16
                             M 0,20 L 250,20
                             M 0,0 L 0,20
-                            M 250,0 L250,20 Z
+                            M 250,0 L250,20 
                       "/>
                 <Path Stroke="DarkGray"
                       Stretch="Fill"
@@ -55,7 +60,7 @@
                             M 125,0 L 125,20
                             M 175,0 L 175,20
                             M 225,0 L 225,20
-                            M 250,0 L250,20 Z
+                            M 250,0 L250,20 
                       "/>
                 <Path Stroke="Gray"
                       Stretch="Fill"
@@ -65,7 +70,7 @@
                             M 100,0 L 100,20 
                             M 150,0 L 150,20
                             M 200,0 L 200,20
-                            M 250,0 L250,20 Z
+                            M 250,0 L250,20 
                       "/>
 
                 <ItemsControl ItemsSource="{Binding Bars}"
@@ -106,11 +111,36 @@
                                       Background="Crimson"/>
 
                             </StackPanel>
-
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
+            </Grid>
+            <Grid Grid.Column="0"
+                  Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                      Path=DataContext.XLegend}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Top"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid 
+                                       VerticalAlignment="Top"
+                                       Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                      Path=DataContext.BarWidth}"
+                                       Margin="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                      Path=DataContext.BarMargin}">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding}"
+                                           Foreground="White"
+                                           FontSize="11"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
             
         </Grid>

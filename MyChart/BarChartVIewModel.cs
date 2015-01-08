@@ -5,10 +5,11 @@ using System.Windows;
 
 namespace MyChart
 {
-    class BarChartVIewModel: BaseViewModel
+    public class BarChartViewModel: BaseViewModel
     {
 
         private double _yScale = 1;
+        private const int barHeaderHeight = 10;
         
         private ObservableCollection<double> _bars = new ObservableCollection<double>();
         public ObservableCollection<double> Bars
@@ -21,7 +22,7 @@ namespace MyChart
             }
         }
 
-        private double _width = 1;
+        private double _width;
         public double Width 
         {
             get { return _width; }
@@ -32,7 +33,7 @@ namespace MyChart
             }
         }
 
-        private double _height = 1;
+        private double _height;
         public double Height
         {
             get { return _height; } 
@@ -55,9 +56,16 @@ namespace MyChart
             }
         }
 
+        private ObservableCollection<string> _xLegend = new ObservableCollection<string>();
+        public ObservableCollection<string> XLegend
+        {
+            get {return _xLegend;}
+        }
+
+
         public Thickness BarMargin
         {
-            get { return new Thickness(BarWidth / 2, 0, BarWidth / 2, 0); }
+            get { return new Thickness(BarWidth / 4, 0, BarWidth / 4, 0); }
         }
 
          private void RecalculateScale()
@@ -65,7 +73,7 @@ namespace MyChart
             var oldYScale = _yScale;
             _yScale =  _height / 100;
 
-            BarWidth = (_width / 2) / Bars.Count;
+            BarWidth = (_width / 1.5) / Bars.Count;
 
             RefreshBarsValues(oldYScale);
         }
@@ -73,7 +81,7 @@ namespace MyChart
         
         private void RefreshBarsValues(double oldYScale)
         {
-            var barHeaderPercentsDelta = (10 / _yScale) - (10 / oldYScale);
+            var barHeaderPercentsDelta = (barHeaderHeight / _yScale) - (barHeaderHeight / oldYScale);
 
             for (int i=0; i<Bars.Count; i++)
             {
@@ -81,11 +89,13 @@ namespace MyChart
             }
         }
 
-        public void AddBar(double barValue)
+        public void AddBar(double barValue, string legend)
          {
-             var barHeaderPercents = 10 / _yScale; 
+             var barHeaderPercents = barHeaderHeight / _yScale; 
              Bars.Add((barValue-barHeaderPercents)*_yScale);
+             XLegend.Add(legend);
              FireEvent("Bars");
+             FireEvent("XLegend");
          }
     }
 }

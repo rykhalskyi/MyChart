@@ -18,8 +18,8 @@
                              Grid.Column="0"
                              Grid.Row="0"
                              DataContext="{Binding Chart}"
-                             ChartStroke="#CC3D6EB3"
-                             ChartFill="#CC3D6EB3"
+                             ChartStroke="Yellow"
+                             ChartFill="Transparent"
                              AxesPrimaryStroke="#30588D"
                              AxesSecondaryStroke="#253F51"
                              LegendForeground="#30588D"/>

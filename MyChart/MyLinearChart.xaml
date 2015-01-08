@@ -84,12 +84,12 @@
                 <Polyline Name="ChartPolyline"
                       VerticalAlignment="Stretch"
                       Points="{Binding Points, Converter={StaticResource DataPointConverter}}"
-                      Stroke="{Binding Path=CharStroke, 
+                      Stroke="{Binding Path=ChartStroke, 
                                        RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MyLinearChart}}}"
                       Fill="{Binding Path=ChartFill, 
                                      RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MyLinearChart}}}"
                       Stretch="None"
-                      StrokeThickness="1"
+                      StrokeThickness="2"
                       Grid.Column="0">
                 </Polyline>
             </Grid>

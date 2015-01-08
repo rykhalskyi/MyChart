@@ -133,7 +133,6 @@ namespace ChartTest
             //Assert
             double expectedValue = 100 - (100 * controlValue / upperLimit);
             Assert.AreEqual(chart.Points[1].Y, expectedValue);
-    
         }
     }
 }

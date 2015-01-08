@@ -75,7 +75,13 @@ namespace MyChart
         public double UpperLimit
         {
             get { return _upperLimit; }
-            set { _upperLimit = value; }
+            set 
+            {
+                if (_upperLimit > 0)
+                {
+                    _upperLimit = value;
+                }
+            }
         }
 
         private ObservableCollection<double> _axisCaption = new ObservableCollection<double>();
