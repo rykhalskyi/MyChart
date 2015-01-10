@@ -93,9 +93,8 @@
                                 <Grid Height="10"
                                       Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
                                                       Path=DataContext.BarWidth}">
-                                   
-                                <Path Name="BarHeader"
-                                      Fill="Crimson"
+
+                                    <Path Name="BarHeader"
                                       StrokeThickness="0"
                                       VerticalAlignment="Bottom"
                                       HorizontalAlignment="Center"
@@ -103,12 +102,42 @@
                                       Data="M 10,0 L90,0
                                             C 100,0 100,0 100,10
                                             L 0,10 
-                                            C 0,0 0,0 10,0 "/>
+                                            C 0,0 0,0 10,0 ">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Setter Property="Fill"
+                                                    Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                     Path=DefaultFill}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <Setter Property="Fill"
+                                                            Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                            Path=SelectedFill}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
                                 </Grid>
                                 <Grid HorizontalAlignment="Center"
-                                      Height="{Binding}"
+                                      Height="{Binding Value}"
                                       Width="{Binding ElementName=BarHeader, Path=ActualWidth}"
-                                      Background="Crimson"/>
+                                      >
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Background"
+                                                    Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                     Path=DefaultFill}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background"
+                                                            Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MyBarChart}},
+                                                            Path=SelectedFill}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                </Grid>
 
                             </StackPanel>
                         </DataTemplate>

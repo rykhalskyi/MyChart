@@ -67,6 +67,7 @@
     <Compile Include="BarChartVIewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="ChartObserver.cs" />
+    <Compile Include="Bar.cs" />
     <Compile Include="MyBarChart.xaml.cs">
       <DependentUpon>MyBarChart.xaml</DependentUpon>
     </Compile>

@@ -11,8 +11,8 @@ namespace MyChart
         private double _yScale = 1;
         private const int barHeaderHeight = 10;
         
-        private ObservableCollection<double> _bars = new ObservableCollection<double>();
-        public ObservableCollection<double> Bars
+        private ObservableCollection<Bar> _bars = new ObservableCollection<Bar>();
+        public ObservableCollection<Bar> Bars
         {
             get { return _bars; }
             set 
@@ -85,14 +85,14 @@ namespace MyChart
 
             for (int i=0; i<Bars.Count; i++)
             {
-                _bars[i] = ((Bars[i]/oldYScale)-barHeaderPercentsDelta) * _yScale;
+                _bars[i].Value = ((Bars[i].Value/oldYScale)-barHeaderPercentsDelta) * _yScale;
             }
         }
 
-        public void AddBar(double barValue, string legend)
+        public void AddBar(double barValue, string legend, bool isSelected = false)
          {
-             var barHeaderPercents = barHeaderHeight / _yScale; 
-             Bars.Add((barValue-barHeaderPercents)*_yScale);
+             var barHeaderPercents = barHeaderHeight / _yScale;
+             Bars.Add(new Bar() { Value = (barValue - barHeaderPercents) * _yScale, IsSelected = isSelected });
              XLegend.Add(legend);
              FireEvent("Bars");
              FireEvent("XLegend");

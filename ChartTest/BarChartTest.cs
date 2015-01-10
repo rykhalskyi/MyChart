@@ -19,7 +19,7 @@ namespace ChartTest
             
             for (int i=0; i<barCount; i++)
             {
-                chart.AddBar(20);
+                chart.AddBar(20, "legend");
             }
             chart.Width = width;
 

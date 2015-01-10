@@ -26,6 +26,8 @@
         
         <local:MyBarChart Grid.Column="1"
                           Grid.Row="0"
+                          DefaultFill="Gray" 
+                          SelectedFill="Yellow"
                           DataContext="{Binding Bars}"/>
 
         <local:MyLinearChart x:Name="charchart2"

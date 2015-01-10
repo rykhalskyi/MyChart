@@ -41,7 +41,7 @@ namespace MyChart
             _dataProvider2.Start();
 
             _bars.AddBar(50, "Bar1");
-            _bars.AddBar(25, "Bar2");
+            _bars.AddBar(25, "Bar2", true);
             _bars.AddBar(75, "Bar3");
         }
         
